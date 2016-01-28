@@ -1,18 +1,12 @@
 --
-# Basic Project
-Basic Java Maven Project Struture
-
-[SQA](hhttp://www.sqa.org/)
-[overview for github] (http://rogerdudler.github.io/git-guide/)
-
-# Creating an up strim
-* Create project at github without initialize the project
-* Create a project at your local repository
-** Follow the instructions from github 
-*** git init ;Will create the init file
-*** git remote add origin https://github.com/100101Ed/basic-project.git
-*** Touch filename
-*** git add filename 
-*** git commit -m "why your moving the files up present something"
-*** git status ;what is pending on stage to be pushed and what has change
-*** git push -u origin master ;pushes to github repository (URL)
+# https://github.com/100101Ed/basic-project
+### Create an application which registered a local pet into the pet data system. 
+* Number of pets will be collected from the user.
+* This will be the allowed pets (dog, cat, fish, bird, reptile, or horse). 
+* If the type is not a valid registrable pet it should let the user know. 
+* If it is, it should echo the price to register the pet for 1 year and confirm price with user.
+* If the user decides to follow through with the registration process, they should than enter the pets Name, Address, Age.
+* Whether they have a Rabies shot (boolean)
+* Yearly Pet Fees (double)
+* Gender (char)
+* Upon exiting the registered pet details should be echoed to the user. 
