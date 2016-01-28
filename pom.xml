@@ -1,10 +1,10 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.sqa.ed</groupId>
-  <artifactId>basic</artifactId>
+  <artifactId>petregistration</artifactId>
   <version>1.0-SNAPSHOT</version>
-  <name>Basic Project</name>
-  <description>Basic maven file structure to put on github which you can use as a starting point with your projects</description>
+  <name>Pet Registration</name>
+  <description>Store a set number of pets which are registers</description>
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
