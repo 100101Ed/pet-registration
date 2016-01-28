@@ -6,7 +6,7 @@
 * If the type is not a valid registrable pet it should let the user know. 
 * If it is, it should echo the price to register the pet for 1 year and confirm price with user.
 * If the user decides to follow through with the registration process, they should than enter the pets Name, Address, Age.
-* Whether they have a Rabies shot (boolean)
-* Yearly Pet Fees (double)
-* Gender (char)
-* Upon exiting the registered pet details should be echoed to the user. 
+* -Whether they have a Rabies shot
+* -Yearly Pet Fees
+* -Gender 
+* -Upon exiting the registered pet details should be echoed to the user. 
