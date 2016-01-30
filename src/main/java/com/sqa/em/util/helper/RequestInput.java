@@ -7,7 +7,6 @@
  */
 package com.sqa.em.util.helper;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -27,31 +26,9 @@ public class RequestInput {
 	private static Scanner scanner = new Scanner(System.in);
 
 	/**
-	 * Will add one element to an existing array
-	 *
-	 * @param elements
-	 *            An array of strings.
-	 * @param addString
-	 *            The one that will be added to the array
-	 * @return will return the array of strings.
-	 */
-	public static String[] addStringElement(String[] elements, String addString) {
-		// Declaration of variables
-		String[] newStringArray;
-		if (elements != null) {
-			newStringArray = Arrays.copyOf(elements, elements.length + 1);
-			newStringArray[elements.length - 1] = addString;
-		} else {
-			newStringArray = new String[1];
-			newStringArray[0] = addString;
-		}
-		return elements;
-	}
-
-	/**
 	 * Static Helper Method ask user for an input (Yes/No) if such input is not
 	 * enter will loop until it is selected
-	 * 
+	 *
 	 * @return boolean Is based on Yes/No input from the user
 	 */
 	public static boolean getBoolean(String question) {
@@ -62,7 +39,7 @@ public class RequestInput {
 			if (input.equalsIgnoreCase("Yes") || (input.equalsIgnoreCase("Y"))) {
 				return true;
 			} else if (input.equalsIgnoreCase("No") || (input.equalsIgnoreCase("N"))) {
-				return true;
+				return false;
 			} else
 				System.out.println("You have not enter a valid option, please choose Yes/Y or No/N.");
 		}
@@ -71,7 +48,7 @@ public class RequestInput {
 	/**
 	 * Static Helper Method which asks user for a char. If more or less than one
 	 * char is entered it will loop until only one is entered.
-	 * 
+	 *
 	 * @return the char the user enter
 	 */
 	public static char getChar(String question) {
@@ -87,8 +64,10 @@ public class RequestInput {
 				input = scanner.nextLine();
 				// Check that the input String is one character long
 				if (input.length() < 1) {
+					System.out.println("Too Few Characters");
 					throw new IllegalArgumentException("too few chars");
 				} else if (input.length() > 1) {
+					System.out.println("Too Many Characters");
 					throw new IllegalArgumentException("too many chars");
 				}
 				// Convert the String into a char value
@@ -104,7 +83,7 @@ public class RequestInput {
 	/**
 	 * Method will ask the user for a char and return only if the char matches
 	 * the ones form the available in the array.
-	 * 
+	 *
 	 * @param question
 	 *            Message that will be ask the user the type of input requested.
 	 * @param characters
@@ -124,6 +103,7 @@ public class RequestInput {
 			if (present == true) {
 				return charFromUser;
 			} else {
+				System.out.println("You have not entere a valid char");
 				continue;
 			}
 		}
@@ -132,7 +112,7 @@ public class RequestInput {
 	/**
 	 * Method will ask the user for a double and return only if the double is
 	 * valid.
-	 * 
+	 *
 	 * @param question
 	 *            Message that will be ask the user the type of input requested.
 	 * @return num entered by the user
@@ -156,7 +136,7 @@ public class RequestInput {
 	/**
 	 * Method ask user for a number. If a number is not enter it will loop
 	 * Indefinitely.
-	 * 
+	 *
 	 * @param question
 	 *            Message that will be ask the user the type of input requested.
 	 * @return The number will be return
@@ -180,8 +160,35 @@ public class RequestInput {
 
 	/**
 	 * Method ask user for a number. If a number is not enter it will loop
-	 * Indefinitely.
-	 * 
+	 * Indefinitely until it gets a number for a specific range
+	 *
+	 * @param question
+	 *            Message that will be ask the user the type of input requested.
+	 * @return The number will be return TODO max min need to update the getInt
+	 */
+	public static int getInt(String question, int min) {
+		int numFromUser = 0;
+		while (true) {
+			try {
+				System.out.print(question);
+				numFromUser = Integer.parseInt(scanner.nextLine());
+				if (numFromUser >= min) {
+					throw new IllegalArgumentException("Your number needs to be grater than " + min);
+				}
+				break; // Refers to the while loop
+			} catch (NumberFormatException e) {
+				System.out.println("You have not enter a valid number.");
+				continue; // Not needed but it is used for clarity purpose
+							 // Right now
+			}
+		}
+		return numFromUser;
+	}
+
+	/**
+	 * Method ask user for a number. If a number is not enter it will loop
+	 * Indefinitely until it gets a number for a specific range
+	 *
 	 * @param question
 	 *            Message that will be ask the user the type of input requested.
 	 * @return The number will be return TODO max min need to update the getInt
@@ -207,15 +214,28 @@ public class RequestInput {
 
 	/**
 	 * Method ask user for an input string
-	 * 
+	 *
+	 * @param question
+	 *            Message that will be ask the user the type of input requested.
+	 * @return The string will be return
+	 */
+	public static String getString(String question) {
+		System.out.print(question);
+		return scanner.nextLine();
+	}
+
+	/**
+	 * Method ask user for an input string
+	 *
 	 * @param question
 	 *            Message that will be ask the user the type of input requested.
 	 * @return The string will be return
 	 */
 	public static String getString(String question, String... words) {
+		String stringFromUser = "";
+		boolean present = false;
 		while (true) {
-			boolean present = false;
-			String stringFromUser = RequestInput.getString(question);
+			stringFromUser = RequestInput.getString(question);
 			// Iterate through the supplied chars and see if it is present
 			for (int i = 0; i < words.length; i++) {
 				if (words[i].equals(stringFromUser)) {
@@ -225,6 +245,7 @@ public class RequestInput {
 			if (present == true) {
 				return stringFromUser;
 			} else {
+				System.out.println("Your entry " + stringFromUser + " is not valid!");
 				continue;
 			}
 		}
